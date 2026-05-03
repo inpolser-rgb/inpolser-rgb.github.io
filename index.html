@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INPOLSER SAS - Pruebas de Honestidad con Polígrafo y CVSA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --blanco: #FFFFFF;
+            --blanco-humo: #F8F9FA;
+            --azul-oscuro: #1e3a5f;
+            --azul-medio: #2d5a87;
+            --naranja: #f29227;
+            --naranja-claro: #f5a846;
+            --naranja-suave: rgba(242, 146, 39, 0.15);
+            --overlay-oscuro: rgba(30, 58, 95, 0.85);
+            --overlay-suave: rgba(30, 58, 95, 0.7);
+            --gris-texto: #4A5568;
+            --transicion: all 0.3s ease;
+            --radio: 12px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--blanco);
+            color: var(--azul-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transicion);
+        }
+
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--azul-oscuro);
+        }
+
+        .nav-menu a:hover { color: var(--naranja); }
+
+        .nav-cta {
+            background: var(--naranja);
+            color: var(--blanco) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--azul-oscuro);
+            transition: var(--transicion);
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(var(--overlay-oscuro), var(--overlay-suave)),
+                        url('images/hero-bg.jpg') center/cover no-repeat fixed;
+            padding-top: 70px;
+            color: var(--blanco);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(242, 146, 39, 0.25);
+            border: 1px solid rgba(242, 146, 39, 0.5);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--naranja);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 .highlight {
+            color: var(--naranja);
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--naranja);
+            color: var(--blanco);
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .btn-primary:hover {
+            background: var(--naranja-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(242, 146, 39, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            color: var(--blanco);
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--naranja);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECCIONES */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--naranja);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--gris-texto);
+            line-height: 1.6;
+        }
+
+        /* TOGGLE CONTENT */
+        .toggle-content {
+            margin-top: 16px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .toggle-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: var(--naranja);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 8px 0;
+            margin-top: 12px;
+        }
+
+        .toggle-btn::after {
+            content: '▼';
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn.active::after {
+            transform: rotate(180deg);
+        }
+
+        .toggle-text {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+            line-height: 1.7;
+            padding: 16px;
+            background: var(--blanco-humo);
+            border-radius: var(--radio);
+            border-left: 3px solid var(--naranja);
+        }
+
+        /* SERVICIOS */
+        .services-section {
+            position: relative;
+            background: linear-gradient(var(--overlay-oscuro), var(--overlay-oscuro)),
+                        url('images/servicios-bg.jpg') center/cover no-repeat fixed;
+            color: var(--blanco);
+        }
+
+        .services-section .section-title {
+            color: var(--blanco);
+        }
+
+        .services-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            position: relative;
+            border-radius: var(--radio);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: var(--transicion);
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .service-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .service-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.6) 100%);
+            z-index: 2;
+            transition: var(--transicion);
+        }
+
+        .service-card:hover .service-card-overlay {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.65) 100%);
+        }
+
+        .service-card.featured {
+            border: 3px solid var(--naranja);
+            position: relative;
+        }
+
+        .service-card.featured::before {
+            content: '★ DESTACADO';
+            position: absolute;
+            top: 12px;
+            right: -35px;
+            background: var(--naranja);
+            color: var(--blanco);
+            padding: 6px 40px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 10;
+            animation: pulse-destacado 2s ease-in-out infinite;
+            box-shadow: 0 4px 12px rgba(242, 146, 39, 0.5);
+        }
+
+        @keyframes pulse-destacado {
+            0%, 100% { 
+                opacity: 1; 
+                transform: rotate(45deg) scale(1);
+            }
+            50% { 
+                opacity: 0.85; 
+                transform: rotate(45deg) scale(1.05);
+            }
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 3;
+            padding: 28px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--naranja-suave);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--azul-oscuro);
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--gris-texto);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--naranja);
+            margin-top: auto;
+        }
+
+        /* TECNOLOGÍAS */
+        .tech-section {
+            background: var(--blanco-humo);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .tech-item {
+            position: relative;
+            border-radius: var(--radio);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 500px;
+        }
+
+        .tech-item-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .tech-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.92) 0%, rgba(30, 58, 95, 0.85) 100%);
+            z-index: 2;
+        }
+
+        .tech-content {
+            position: relative;
+            z-index: 3;
+            padding: 32px 28px;
+            color: var(--blanco);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: var(--naranja);
+            color: var(--blanco);
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .tech-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--blanco);
+        }
+
+        .tech-content > p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tech-content .toggle-btn {
+            color: var(--naranja);
+            align-self: flex-start;
+        }
+
+        .tech-content .toggle-text {
+            background: rgba(255,255,255,0.1);
+            color: var(--blanco);
+            border-left-color: var(--naranja);
+        }
+
+        .tech-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tech-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .tech-feature-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(242, 146, 39, 0.25);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .tech-feature-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--blanco);
+        }
+
+        .tech-feature-text p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+
+        /* PREPARACIÓN */
+        .preparation-section {
+            position: relative;
+            background: linear-gradient(var(--overlay-oscuro), var(--overlay-oscuro)),
+                        url('images/cta-preparacion.jpg') center/cover no-repeat fixed;
+            color: var(--blanco);
+            padding: 80px 0;
+        }
+
+        .preparation-section .section-label {
+            color: var(--naranja);
+        }
+
+        .preparation-section .section-title {
+            color: var(--blanco);
+        }
+
+        .preparation-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .prep-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .prep-hero {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .prep-hero h2 {
+            font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .prep-hero h2 span {
+            color: var(--naranja);
+        }
+
+        .prep-hero > p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            opacity: 0.95;
+        }
+
+        .prep-audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .audience-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .prep-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .prep-module {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radio);
+            padding: 28px 24px;
+            backdrop-filter: blur(10px);
+            transition: var(--transicion);
+        }
+
+        .prep-module:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        .prep-module-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: rgba(242, 146, 39, 0.5);
+            margin-bottom: 12px;
+        }
+
+        .prep-module-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .prep-module h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--blanco);
+        }
+
+        .prep-module p {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .prep-benefits {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radio);
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .prep-benefits h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--blanco);
+        }
+
+        .prep-benefits h3 span {
+            color: var(--naranja);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .benefit-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(242, 146, 39, 0.25);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .benefit-text h4 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--blanco);
+        }
+
+        .benefit-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+        }
+
+        /* TIPOS DE PRUEBAS */
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .test-card {
+            background: var(--blanco);
+            border-radius: var(--radio);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .test-card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .test-card-image.preempleo {
+            background-image: linear-gradient(var(--overlay-suave), var(--overlay-suave)),
+                              url('images/servicio-preempleo.jpg');
+        }
+
+        .test-card-image.rutina {
+            background-image: linear-gradient(var(--overlay-suave), var(--overlay-suave)),
+                              url('images/servicio-rutina.jpg');
+        }
+
+        .test-card-image.investigacion {
+            background-image: linear-gradient(var(--overlay-suave), var(--overlay-suave)),
+                              url('images/servicio-investigacion.jpg');
+        }
+
+        .test-card-tag {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: var(--naranja);
+            color: var(--blanco);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .test-card-body {
+            padding: 24px;
+        }
+
+        .test-card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .test-card-body p {
+            font-size: 0.88rem;
+            color: var(--gris-texto);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .test-card-body ul {
+            margin-top: 14px;
+        }
+
+        .test-card-body ul li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--gris-texto);
+            padding: 4px 0;
+        }
+
+        .test-card-body ul li::before {
+            content: '✓';
+            color: var(--naranja);
+            font-weight: 700;
+        }
+
+        /* PROCESO */
+        .process-section {
+            position: relative;
+            background: linear-gradient(var(--overlay-oscuro), var(--overlay-oscuro)),
+                        url('images/tecnologias-bg.jpg') center/cover no-repeat fixed;
+            color: var(--blanco);
+            padding: 80px 0;
+        }
+
+        .process-section .section-label {
+            color: var(--naranja);
+        }
+
+        .process-section .section-title {
+            color: var(--blanco);
+        }
+
+        .process-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radio);
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+            transition: var(--transicion);
+            text-align: center;
+        }
+
+        .process-step:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: rgba(242, 146, 39, 0.25);
+            color: var(--naranja);
+            border: 2px solid var(--naranja);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--blanco);
+        }
+
+        .process-step p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        /* CONTACTO */
+        .contact-section {
+            position: relative;
+            background: linear-gradient(var(--overlay-suave), var(--overlay-suave)),
+                        url('images/contacto-bg.jpg') center/cover no-repeat fixed;
+            padding: 80px 0;
+        }
+
+        .contact-section .section-title {
+            color: var(--blanco);
+        }
+
+        .contact-section .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.95);
+            padding: 32px 28px;
+            border-radius: var(--radio);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .contact-info > p {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+            margin-bottom: 24px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--naranja-suave);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-text h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .contact-detail-text p {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+        }
+
+        .contact-detail-text a {
+            color: var(--naranja);
+            font-weight: 600;
+        }
+
+        .contact-form-wrapper {
+            background: rgba(255,255,255,0.98);
+            border-radius: var(--radio);
+            padding: 32px 28px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-form-wrapper > p {
+            font-size: 0.85rem;
+            color: var(--gris-texto);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(10, 22, 40, 0.1);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transicion);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--naranja);
+            box-shadow: 0 0 0 3px rgba(242, 146, 39, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--naranja);
+            color: var(--blanco);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .form-submit:hover {
+            background: var(--naranja-claro);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--naranja);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-tooltip {
+            background: var(--blanco);
+            color: var(--azul-oscuro);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .whatsapp-btn {
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transicion);
+            animation: whatsapp-pulse 2s ease-in-out infinite;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20BD5A;
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--blanco);
+        }
+
+        @keyframes whatsapp-pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6), 0 0 0 8px rgba(37, 211, 102, 0.1);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (min-width: 768px) {
+            .hamburger { display: none; }
+            .nav-menu { display: flex !important; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--blanco);
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+            .nav-menu.open { display: flex; }
+            .hero-stats { gap: 20px; }
+            .hero-stat-number { font-size: 1.5rem; }
+            .service-card.featured::before {
+                font-size: 0.6rem;
+                padding: 4px 30px;
+                right: -28px;
+                top: 8px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .whatsapp-tooltip {
+                display: none;
+            }
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+            }
+            .whatsapp-btn svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <img src="images/logo-oscuro.png" alt="INPOLSER SAS Logo">
+                </a>
+
+                <nav class="nav-menu" id="navMenu">
+                    <a href="#servicios">Servicios</a>
+                    <a href="#tecnologias">Tecnologías</a>
+                    <a href="#preparacion">Preparación</a>
+                    <a href="#proceso">Proceso</a>
+                    <a href="#contacto" class="nav-cta">Agendar Cita</a>
+                </nav>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">Servicio Profesional Certificado</div>
+            <h1>Pruebas de <span class="highlight">Honestidad</span> con Tecnología de Vanguardia</h1>
+            <p class="hero-description">Aplicamos polígrafo y CVSA (Computer Voice Stress Analyzer) para evaluar la veracidad con precisión científica. Ofrecemos pruebas de pre-empleo, rutina y específicas, además de preparación ética profesional para evaluados.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn-primary">Solicitar Evaluación →</a>
+                <a href="#preparacion" class="btn-secondary">Preparación Ética ★</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">+5,000</div>
+                    <div class="hero-stat-label">Evaluaciones</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">98%</div>
+                    <div class="hero-stat-label">Precisión</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">+15</div>
+                    <div class="hero-stat-label">Años Experiencia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section services-section" id="servicios">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Nuestros Servicios</div>
+                <h2 class="section-title">Soluciones Integrales en Evaluación de Honestidad</h2>
+                <p class="section-subtitle">Ofrecemos un portafolio completo de servicios diseñados para empresas y particulares.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-bg" style="background-image: url('images/card-preempleo.jpg')"></div>
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon">🔍</div>
+                        <h3>Pruebas de Pre-Empleo</h3>
+                        <p>Evaluación integral de candidatos antes de su incorporación.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Evaluación integral de candidatos antes de su incorporación, verificando la veracidad de la información proporcionada en su perfil profesional y antecedentes.</div>
+                        </div>
+                        <a href="#contacto" class="learn-more">Solicitar servicio →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-bg" style="background-image: url('images/card-rutina.jpg')"></div>
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon">🔄</div>
+                        <h3>Pruebas de Rutina y Permanencia</h3>
+                        <p>Evaluaciones periódicas a empleados activos.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Evaluaciones periódicas a empleados activos para mantener un entorno laboral de confianza y detectar irregularidades.</div>
+                        </div>
+                        <a href="#contacto" class="learn-more">Solicitar servicio →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-bg" style="background-image: url('images/card-investigativa.jpg')"></div>
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon">🎯</div>
+                        <h3>Pruebas Específicas</h3>
+                        <p>Investigaciones focalizadas sobre incidentes concretos.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Investigaciones focalizadas sobre incidentes concretos: pérdidas patrimoniales, filtración de información o conductas indebidas.</div>
+                        </div>
+                        <a href="#contacto" class="learn-more">Solicitar servicio →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-bg" style="background-image: url('images/card-investigacion.jpg')"></div>
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon">📋</div>
+                        <h3>Informes de Seguridad</h3>
+                        <p>Elaboración de informes detallados de seguridad.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Informes detallados con análisis de riesgos, perfiles de confianza y recomendaciones estratégicas.</div>
+                        </div>
+                        <a href="#contacto" class="learn-more">Solicitar servicio →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-bg" style="background-image: url('images/card-visita.jpg')"></div>
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon">🏠</div>
+                        <h3>Visitas Domiciliarias</h3>
+                        <p>Servicio de verificación en campo.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Visitas al domicilio del evaluado para complementar la evaluación con información contextual del entorno.</div>
+                        </div>
+                        <a href="#contacto" class="learn-more">Solicitar servicio →</a>
+                    </div>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-card-bg" style="background-image: url('images/card-preparacion.jpg')"></div>
+                    <div class="service-card-overlay" style="background: linear-gradient(to bottom, rgba(255,245,235,0.8) 0%, rgba(255,240,230,0.7) 100%);"></div>
+                    <div class="service-card-content">
+                        <div class="service-icon" style="background: rgba(242, 146, 39, 0.2);">🎓</div>
+                        <h3>Preparación Ética y Profesional</h3>
+                        <p style="color: var(--azul-oscuro); font-weight: 600;">Servicio exclusivo de coaching para futuros evaluados.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver más información</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text" style="background: rgba(242, 146, 39, 0.1);">Preparamos ética y profesionalmente a aspirantes, empleados y particulares para que enfrenten sus pruebas con confianza y transparencia.</div>
+                        </div>
+                        <a href="#preparacion" class="learn-more" style="color: var(--naranja); font-weight: 700;">Conocer más →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGÍAS -->
+    <section class="section tech-section" id="tecnologias">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Tecnología</div>
+                <h2 class="section-title">Dos Tecnologías, Un Solo Objetivo: La Verdad</h2>
+                <p class="section-subtitle">Utilizamos los instrumentos más avanzados y reconocidos a nivel mundial.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-item-bg" style="background-image: url('images/tecnologia-poligrafo.jpg')"></div>
+                    <div class="tech-item-overlay"></div>
+                    <div class="tech-content">
+                        <div class="tech-badge">Polígrafo</div>
+                        <h3>Evaluación Poligráfica</h3>
+                        <p>El polígrafo registra de forma simultánea múltiples respuestas fisiológicas del evaluado.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver características</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">El polígrafo registra frecuencia cardíaca, presión arterial, actividad electrodérmica y patrón respiratorio. Estos datos son analizados por evaluadores certificados bajo protocolos estandarizados.</div>
+                        </div>
+                        <div class="tech-features">
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">📊</div>
+                                <div class="tech-feature-text">
+                                    <h4>Medición Multifisiológica</h4>
+                                    <p>Registra frecuencia cardíaca, presión arterial, conductancia de la piel y respiración.</p>
+                                </div>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🔬</div>
+                                <div class="tech-feature-text">
+                                    <h4>Precisión Científica</h4>
+                                    <p>Tasa de precisión superior al 95% con examinadores certificados.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#contacto" class="btn-primary" style="margin-top: auto; font-size: 0.85rem; padding: 12px 24px; align-self: flex-start;">Agendar Prueba →</a>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item-bg" style="background-image: url('images/tecnologia-cvsa.jpg')"></div>
+                    <div class="tech-item-overlay"></div>
+                    <div class="tech-content">
+                        <div class="tech-badge">CVSA</div>
+                        <h3>Análisis de Estrés Vocal</h3>
+                        <p>El CVSA detecta micro-tensiones en la voz humana imperceptibles al oído.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver características</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">Cuando una persona experimenta estrés al responder preguntas, su voz presenta alteraciones en frecuencias específicas que el equipo captura y analiza.</div>
+                        </div>
+                        <div class="tech-features">
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🎙️</div>
+                                <div class="tech-feature-text">
+                                    <h4>Análisis Vocal No Invasivo</h4>
+                                    <p>Sin sensores ni cables: micrófono de alta sensibilidad.</p>
+                                </div>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">⚡</div>
+                                <div class="tech-feature-text">
+                                    <h4>Resultados en Tiempo Real</h4>
+                                    <p>El software analiza las frecuencias vocales de forma inmediata.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#contacto" class="btn-primary" style="margin-top: auto; font-size: 0.85rem; padding: 12px 24px; align-self: flex-start;">Agendar Prueba →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREPARACIÓN -->
+    <section class="preparation-section" id="preparacion">
+        <div class="container prep-content">
+            <div class="section-header">
+                <div class="section-label">Servicio Destacado</div>
+                <h2 class="section-title">Preparación Ética y Profesional para Evaluados</h2>
+                <p class="section-subtitle">Nuestro servicio más solicitado: preparamos integralmente a toda persona que deberá enfrentar una prueba de honestidad.</p>
+            </div>
+
+            <div class="prep-hero">
+                <h2>Enfrenta tu prueba de honestidad con <span>confianza total</span> y preparación profesional</h2>
+                <p>Sabemos que someterse a una prueba de polígrafo o CVSA puede generar ansiedad e incertidumbre. Nuestro programa de preparación ética y profesional está diseñado para que llegues a tu evaluación tranquilo, informado y en las mejores condiciones posibles.</p>
+                <div class="prep-audience-tags">
+                    <div class="audience-tag">💼 Aspirantes a Empresas</div>
+                    <div class="audience-tag">👤 Particulares</div>
+                    <div class="audience-tag">🏢 Empleados en Actividad</div>
+                    <div class="audience-tag">🔄 Pruebas de Rutina</div>
+                </div>
+                <a href="#contacto" class="btn-primary">Quiero Prepararme →</a>
+            </div>
+
+            <div class="prep-modules">
+                <div class="prep-module">
+                    <div class="prep-module-number">01</div>
+                    <div class="prep-module-icon">📖</div>
+                    <h4>Educación sobre el Proceso</h4>
+                    <p>Te explicamos paso a paso cómo funciona una prueba de polígrafo y CVSA.</p>
+                    <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                    <div class="toggle-content">
+                        <div class="toggle-text">Qué esperar, cómo se desarrolla la sesión, los tipos de preguntas y los protocolos utilizados.</div>
+                    </div>
+                </div>
+                <div class="prep-module">
+                    <div class="prep-module-number">02</div>
+                    <div class="prep-module-icon">🧘</div>
+                    <h4>Manejo de Ansiedad</h4>
+                    <p>Técnicas de respiración, relajación y control emocional.</p>
+                    <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                    <div class="toggle-content">
+                        <div class="toggle-text">Técnicas probadas que te permitirán mantenerte tranquilo y estable durante toda la evaluación.</div>
+                    </div>
+                </div>
+                <div class="prep-module">
+                    <div class="prep-module-number">03</div>
+                    <div class="prep-module-icon">🗣️</div>
+                    <h4>Simulación de Evaluación</h4>
+                    <p>Realizamos simulacros con preguntas similares a las que enfrentarás.</p>
+                    <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                    <div class="toggle-content">
+                        <div class="toggle-text">Practica tu forma de responder y familiarízate con el formato de la entrevista pre-prueba.</div>
+                    </div>
+                </div>
+                <div class="prep-module">
+                    <div class="prep-module-number">04</div>
+                    <div class="prep-module-icon">✅</div>
+                    <h4>Revisión de Información</h4>
+                    <p>Te ayudamos a revisar y organizar toda la información que presentarás.</p>
+                    <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                    <div class="toggle-content">
+                        <div class="toggle-text">Currículum, antecedentes, referencias... Garantizamos coherencia y veracidad absoluta.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prep-benefits">
+                <h3>¿Por qué invertir en tu <span>preparación</span>?</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <h4>Mayor Confianza</h4>
+                            <p>Llegarás sin miedos ni dudas, sabiendo qué esperar.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📊</div>
+                        <div class="benefit-text">
+                            <h4>Resultados más Precisos</h4>
+                            <p>Al estar relajado, tus respuestas reflejarán la verdad.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🛡️</div>
+                        <div class="benefit-text">
+                            <h4>Evita Falsos Positivos</h4>
+                            <p>La preparación reduce el riesgo de nervios extremos.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💪</div>
+                        <div class="benefit-text">
+                            <h4>Postura Profesional</h4>
+                            <p>Demostrarás madurez y profesionalismo.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔑</div>
+                        <div class="benefit-text">
+                            <h4>Transparencia Total</h4>
+                            <p>No enseñamos a engañar. Te preparamos con honestidad.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⏱️</div>
+                        <div class="benefit-text">
+                            <h4>Sesiones Flexibles</h4>
+                            <p>Programamos según tu disponibilidad, incluso virtual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPOS DE PRUEBAS -->
+    <section class="section" id="tipos-pruebas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Tipos de Evaluación</div>
+                <h2 class="section-title">Pruebas Adaptadas a Cada Necesidad</h2>
+                <p class="section-subtitle">Cada tipo de evaluación está diseñada con protocolos específicos.</p>
+            </div>
+
+            <div class="tests-grid">
+                <div class="test-card">
+                    <div class="test-card-image preempleo">
+                        <div class="test-card-tag">Pre-Empleo</div>
+                    </div>
+                    <div class="test-card-body">
+                        <h3>Prueba de Pre-Empleo</h3>
+                        <p>Evaluación exhaustiva aplicada a candidatos antes de su contratación.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">
+                                <ul>
+                                    <li>Verificación de datos del currículum</li>
+                                    <li>Antecedentes laborales y personales</li>
+                                    <li>Consumo de sustancias</li>
+                                    <li>Historial de conductas indebidas</li>
+                                    <li>Conflictos de interés</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-card-image rutina">
+                        <div class="test-card-tag">Rutina</div>
+                    </div>
+                    <div class="test-card-body">
+                        <h3>Prueba de Rutina y Permanencia</h3>
+                        <p>Evaluaciones periódicas al personal activo.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">
+                                <ul>
+                                    <li>Evaluaciones programadas anuales o semestrales</li>
+                                    <li>Detección de conductas irregulares</li>
+                                    <li>Verificación de cumplimiento normativo</li>
+                                    <li>Monitoreo de fidelidad y lealtad</li>
+                                    <li>Prevención de riesgos internos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-card-image investigacion">
+                        <div class="test-card-tag">Específica</div>
+                    </div>
+                    <div class="test-card-body">
+                        <h3>Prueba Específica</h3>
+                        <p>Investigación focalizada sobre un incidente o situación particular.</p>
+                        <button class="toggle-btn" onclick="toggleContent(this)">Ver detalles</button>
+                        <div class="toggle-content">
+                            <div class="toggle-text">
+                                <ul>
+                                    <li>Investigación de fraudes o hurtos</li>
+                                    <li>Filtración de información confidencial</li>
+                                    <li>Acoso laboral o conductas indebidas</li>
+                                    <li>Conflictos entre colaboradores</li>
+                                    <li>Eventos de seguridad específicos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="process-section" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Cómo Trabajamos</div>
+                <h2 class="section-title">Proceso Simple y Profesional</h2>
+                <p class="section-subtitle">Desde el primer contacto hasta la entrega de resultados.</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Contacto Inicial</h4>
+                    <p>Comunícate con nosotros. Te asesoramos sobre el tipo de evaluación que necesitas.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Planificación</h4>
+                    <p>Diseñamos el protocolo personalizado y programamos la fecha y hora.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Evaluación</h4>
+                    <p>Se realiza la prueba con polígrafo y/o CVSA en ambiente profesional y confidencial.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Análisis</h4>
+                    <p>Nuestros evaluadores certificados analizan los resultados con rigurosidad científica.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h4>Entrega</h4>
+                    <p>Recibe los resultados e informe detallado en 24-48 horas con total confidencialidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO CON FORMSUBMIT -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Contacto</div>
+                <h2 class="section-title">Hablemos de Tu Necesidad</h2>
+                <p class="section-subtitle">Estamos listos para asesorarte. Contáctanos y te responderemos en menos de 24 horas.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <p>Completa el formulario o comunícate directamente con nosotros.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">📞</div>
+                            <div class="contact-detail-text">
+                                <h4>Teléfono / WhatsApp</h4>
+                                <p><a href="tel:0996512453">099 651 2453</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">✉️</div>
+                            <div class="contact-detail-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:inpolser@gmail.com">inpolser@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">📍</div>
+                            <div class="contact-detail-text">
+                                <h4>Oficina</h4>
+                                <p>Ecuador - Dirección exacta</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">🕐</div>
+                            <div class="contact-detail-text">
+                                <h4>Horario</h4>
+                                <p>Lunes a Viernes: 8:00 AM — 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h3>Solicita Tu Evaluación o Preparación</h3>
+                    <p>Completa el formulario y nos pondremos en contacto contigo.</p>
+                    
+                    <!-- FORMSUBMIT.CO FORM -->
+                    <form action="https://formsubmit.co/inpolser@gmail.com" method="POST">
+                        <!-- Configuración de FormSubmit -->
+                        <input type="hidden" name="_subject" value="🔍 Nuevo Contacto Web - INPOLSER SAS">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="099 XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de Interés *</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="Pre-Empleo">Prueba de Pre-Empleo</option>
+                                <option value="Rutina">Prueba de Rutina / Permanencia</option>
+                                <option value="Específica">Prueba Específica</option>
+                                <option value="Preparación">Preparación Ética y Profesional</option>
+                                <option value="Informe">Informe de Seguridad</option>
+                                <option value="Visita">Visita Domiciliaria</option>
+                                <option value="Otro">Otro / Consulta General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu necesidad o consulta..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Enviar Solicitud →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="images/logo-blanco.png" alt="INPOLSER SAS Logo">
+                    </a>
+                    <p>Servicios profesionales de evaluación de honestidad con polígrafo y CVSA. Preparamos ética y profesionalmente a evaluados.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>SERVICIOS</h4>
+                    <ul>
+                        <li><a href="#servicios">Pruebas de Pre-Empleo</a></li>
+                        <li><a href="#servicios">Pruebas de Rutina</a></li>
+                        <li><a href="#servicios">Pruebas Específicas</a></li>
+                        <li><a href="#preparacion">Preparación Ética</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>TECNOLOGÍAS</h4>
+                    <ul>
+                        <li><a href="#tecnologias">Polígrafo</a></li>
+                        <li><a href="#tecnologias">CVSA</a></li>
+                        <li><a href="#proceso">Nuestro Proceso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTACTO</h4>
+                    <ul>
+                        <li><a href="tel:0996512453">099 651 2453</a></li>
+                        <li><a href="mailto:inpolser@gmail.com">inpolser@gmail.com</a></li>
+                        <li><a href="#contacto">Formulario</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 INPOLSER SAS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/593996512453?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20servicios%20de%20polígrafo%20y%20CVSA." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-tooltip">¿Necesitas ayuda? Escríbenos</span>
+        <div class="whatsapp-btn">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958C9.72 31.068 12.746 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.338 22.594c-.39 1.1-1.932 2.014-3.168 2.28-.846.18-1.95.324-5.668-1.218-4.76-1.972-7.826-6.796-8.064-7.112-.23-.316-1.932-2.574-1.932-4.908s1.222-3.472 1.656-3.948c.434-.476.946-.594 1.26-.594.316 0 .632.002.908.016.29.014.68-.11 1.062.806.39.942 1.332 3.24 1.448 3.476.118.238.196.516.04.832-.158.316-.236.514-.472.792-.236.278-.496.62-.708.832-.236.236-.482.494-.208.966.276.472 1.226 2.024 2.632 3.282 1.81 1.612 3.338 2.114 3.81 2.348.472.236.748.196 1.024-.118.276-.316 1.178-1.378 1.494-1.85.316-.472.632-.394 1.062-.236.434.158 2.738 1.292 3.21 1.528.472.238.786.354.904.55.118.198.118 1.142-.272 2.242z"/>
+            </svg>
+        </div>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle Content
+        function toggleContent(btn) {
+            const content = btn.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            btn.parentElement.querySelectorAll('.toggle-content').forEach(c => {
+                c.classList.remove('active');
+            });
+            btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                content.classList.add('active');
+                btn.classList.add('active');
+            }
+        }
+
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('open');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('open');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
