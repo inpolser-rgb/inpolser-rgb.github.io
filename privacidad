@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | INPOLSER SAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blanco: #FFFFFF;
+            --azul-oscuro: #1e3a5f;
+            --naranja: #f29227;
+            --gris-texto: #4A5568;
+            --gris-claro: #F8F9FA;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--blanco);
+            color: var(--azul-oscuro);
+            line-height: 1.7;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header {
+            background: var(--blanco);
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.1rem; }
+        .logo img { height: 36px; }
+        .back-link { color: var(--naranja); font-weight: 600; font-size: 0.9rem; }
+        
+        /* Content */
+        .content { padding: 60px 0 80px; }
+        .content h1 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        .last-update { color: var(--gris-texto); font-size: 0.85rem; margin-bottom: 40px; }
+        .content h2 { font-size: 1.3rem; font-weight: 700; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--gris-claro); }
+        .content p, .content ul { margin-bottom: 16px; color: var(--gris-texto); }
+        .content ul { padding-left: 20px; }
+        .content ul li { margin-bottom: 8px; }
+        .highlight { color: var(--naranja); font-weight: 600; }
+        
+        /* Footer */
+        .footer {
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .footer a { color: var(--naranja); }
+        
+        @media (max-width: 600px) {
+            .content h1 { font-size: 1.6rem; }
+            .content { padding: 40px 0 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/logo-oscuro.png" alt="INPOLSER SAS">
+            </a>
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="content">
+        <div class="container">
+            <h1>Política de Privacidad</h1>
+            <p class="last-update">Última actualización: Noviembre 2024</p>
+
+            <h2>1. Responsable del Tratamiento</h2>
+            <p><strong>INPOLSER SAS</strong>, con domicilio en Quito, Ecuador, es responsable del tratamiento de los datos personales que nos proporciones a través de nuestro sitio web y formularios de contacto.</p>
+
+            <h2>2. Datos que Recopilamos</h2>
+            <p>Al utilizar nuestro formulario de contacto, recopilamos únicamente la información que nos proporcionas voluntariamente:</p>
+            <ul>
+                <li>Nombre completo</li>
+                <li>Correo electrónico</li>
+                <li>Número de teléfono</li>
+                <li>Servicio de interés</li>
+                <li>Mensaje o consulta</li>
+            </ul>
+            <p>No recopilamos datos sensibles (salud, religión, orientación política, etc.) a través del sitio web.</p>
+
+            <h2>3. Finalidad del Tratamiento</h2>
+            <p>Utilizamos tus datos personales exclusivamente para:</p>
+            <ul>
+                <li>Responder a tus consultas y solicitudes</li>
+                <li>Brindarte información sobre nuestros servicios de polígrafo y CVSA</li>
+                <li>Coordinar citas, evaluaciones o visitas domiciliarias</li>
+                <li>Cumplir con obligaciones legales y contractuales</li>
+            </ul>
+
+            <h2>4. Base Legal</h2>
+            <p>El tratamiento se basa en tu <span class="highlight">consentimiento expreso</span> al enviar el formulario, así como en la ejecución de solicitudes precontractuales conforme a la <strong>Ley Orgánica de Protección de Datos Personales del Ecuador</strong>.</p>
+
+            <h2>5. Almacenamiento y Seguridad</h2>
+            <p>Tus datos se almacenan de forma segura y solo son accesibles por personal autorizado de INPOLSER SAS. Implementamos medidas técnicas y organizativas para proteger tu información contra acceso no autorizado, pérdida o alteración.</p>
+            <p>Los datos del formulario se procesan a través de <strong>FormSubmit.co</strong>, un servicio externo seguro que no comercializa ni utiliza tus datos para fines propios.</p>
+
+            <h2>6. No Compartimos tus Datos</h2>
+            <p><strong>Nunca vendemos, alquilamos ni compartimos</strong> tus datos personales con terceros para fines de marketing o publicidad. Solo podríamos divulgarlos si es requerido por ley o para proteger derechos legales.</p>
+
+            <h2>7. Tus Derechos (ARCO)</h2>
+            <p>De acuerdo con la legislación ecuatoriana, tienes derecho a:</p>
+            <ul>
+                <li><strong>Acceder</strong> a tus datos personales</li>
+                <li><strong>Rectificar</strong> información inexacta</li>
+                <li><strong>Cancelar</strong> o solicitar la eliminación de tus datos</li>
+                <li><strong>Oponerte</strong> al tratamiento de los mismos</li>
+            </ul>
+            <p>Para ejercer estos derechos, escríbenos a: <a href="mailto:inpolser@gmail.com" style="color: var(--naranja);">inpolser@gmail.com</a></p>
+
+            <h2>8. Cookies y Seguimiento</h2>
+            <p>Actualmente nuestro sitio <strong>no utiliza cookies de seguimiento ni herramientas de analytics</strong>. Si en el futuro implementamos Google Analytics o similares, lo notificaremos y podrás aceptarlos o rechazarlos.</p>
+
+            <h2>9. Retención de Datos</h2>
+            <p>Conservaremos tus datos solo durante el tiempo necesario para atender tu solicitud y cumplir con las obligaciones legales aplicables. Puedes solicitar su eliminación en cualquier momento.</p>
+
+            <h2>10. Cambios en esta Política</h2>
+            <p>Podemos actualizar esta política para reflejar cambios en nuestros servicios o en la normativa vigente. La fecha de última actualización siempre aparecerá al inicio de este documento.</p>
+
+            <h2>11. Contacto</h2>
+            <p>Si tienes dudas sobre esta política o el tratamiento de tus datos, contáctanos:</p>
+            <p>📧 <a href="mailto:inpolser@gmail.com" style="color: var(--naranja);">inpolser@gmail.com</a><br>
+            📞 099 651 2453<br>
+            🌐 <a href="index.html" style="color: var(--naranja);">inpolser-rgb.github.io</a></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            © 2024 INPOLSER SAS. Todos los derechos reservados. | <a href="privacidad.html">Política de Privacidad</a>
+        </div>
+    </footer>
+
+</body>
+</html>
